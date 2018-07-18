@@ -1,0 +1,13 @@
+<h2>
+  {{nbActionPoints}} ActionPoints
+</h2>
+
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let actionPoint of actionPoints">
+    <img src="{{actionPoint.imageURL}}" style="height: 50px; width: 50px">
+    <div>
+      <h5><a [routerLink]="['/action-detail', actionPoint.id]">{{actionPoint.title}}</a></h5>
+      <h6>Id: {{actionPoint.id}}</h6>
+    </div>
+  </li>
+</ul>
