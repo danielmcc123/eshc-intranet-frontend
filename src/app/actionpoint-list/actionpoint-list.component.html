@@ -1,13 +1,47 @@
-<h2>
-  {{nbActionPoints}} ActionPoints
-</h2>
-
-<ul class="list-group">
-  <li class="list-group-item" *ngFor="let actionPoint of actionPoints">
-    <img src="{{actionPoint.imageURL}}" style="height: 50px; width: 50px">
-    <div>
-      <h5><a [routerLink]="['/action-detail', actionPoint.id]">{{actionPoint.title}}</a></h5>
-      <h6>Id: {{actionPoint.id}}</h6>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card strpied-tabled-with-hover">
+                    <div class="card-header inline">
+                        <h4 class="card-title">Action Points
+                            <a [routerLink]="['/action-create']">
+                                <button type="button" class="btn btn-sm btn-success">Create</button>
+                            </a>
+                        </h4>
+                        <p class="card-category"></p>
+                    </div>
+                    <div class="card-body table-full-width table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Lead</th>
+                                <th>Status</th>
+                                <th>Updated</th>
+                                <th>Actions</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let actionPoint of actionPoints">
+                                    <td>{{ actionPoint.id }}</td>
+                                    <td>
+                                        <a [routerLink]="['/action-detail', actionPoint.id]">{{ actionPoint.title }}</a>
+                                    </td>
+                                    <td>{{ actionPoint.leadContributor }}
+                                        <div ng-if="!actionPoint.leadContributor"></div>
+                                    </td>
+                                    <td>{{ actionPoint.currentStatus }}</td>
+                                    <td>{{ actionPoint.lastModified }}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-xs btn-success">Edit</button>
+                                        <button type="button" class="btn btn-danger btn-xs">Del</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </li>
-</ul>
+</div>

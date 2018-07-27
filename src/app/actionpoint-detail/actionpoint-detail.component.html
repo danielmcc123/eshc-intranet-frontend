@@ -1,56 +1,126 @@
-<div class="container">
-  <div class="py-5 text-center">
-    <div class="col-md-12 order-md-1">
-      <h4 class="mb-3">ActionPoint Details</h4>
-      <form (ngSubmit)="delete()">
-
-        <div class="form-group row">
-          <div class="col-md-12 mb-3">
-            <label for="firstName">Title</label>
-            <input type="text" class="form-control" id="firstName" placeholder="" value="{{actionPoint.title}}" readonly>
-            <!-- <div class="invalid-feedback">
-            Valid Title is required
-          </div> -->
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label for="username">Description</label>
-          <div class="input-group">
-            <textarea type="text" class="form-control" id="username" placeholder="" value="{{actionPoint.description}}" readonly></textarea>
-            <!-- <div class="invalid-feedback" style="width: 100%;">
-            Your description is required.
-          </div> -->
-          </div>
-        </div>
-
-        <div class=" form-group row">
-          <div class="col-md-5 mb-3">
-            <label for="country">Lead Contributor</label>
-            <input type="text" class="form-control" id="firstName" placeholder="" value="{{actionPoint.leadContributor}}" readonly>
-
-            <!-- <div class="invalid-feedback">
-            Please select a valid country.
-          </div> -->
-          </div>
-          <div class="col-md-12 mb-6">
-            <label for="state">Status</label>
-            <input type="text" class="form-control" id="firstName" placeholder="" value="{{actionPoint.status}}" readonly>
-          </div>
-          <div class="form-group row">
-            <div class="col-md-5 mb-6">
-              <label for="country">Contributors</label>
-              <ul class="list-group">
-
-              </ul>
-
-              <!-- <div class="invalid-feedback">
-            Please select a valid country.
-          </div> -->
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Action Point Details
+                            <h6 ng-app="">Edit:
+                                <input type="checkbox" [ngModel]="disabled" [checked]="disabled" (change)="checkClicked(disabled)">
+                            </h6>
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <form (ngSubmit)="update()">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Title</label>
+                                        <input type="text" name="title" class="form-control" [disabled]="!disabled" placeholder="Title" [(ngModel)]="actionPoint.title">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5 pr-1">
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <input type="text" name="status" class="form-control" [disabled]="!disabled" placeholder="Status" [(ngModel)]="actionPoint.currentStatus">
+                                    </div>
+                                </div>
+                                <div class="col-md-2 px-1">
+                                    <div class="form-group">
+                                        <label>ID</label>
+                                        <input type="text" name="id" class="form-control" disabled="" placeholder="ID" value="{{ actionPoint.id }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-5 pl-1">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Category</label>
+                                        <input type="email" name="category" class="form-control" [disabled]="!disabled" placeholder="Category" [(ngModel)]="actionPoint.category">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>Lead Contributor</label>
+                                        <input type="text" name="lead" class="form-control" [disabled]="!disabled" placeholder="Lead" [(ngModel)]="actionPoint.leadContributor">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>Contributors</label>
+                                        <input type="text" name="contributors" class="form-control" [disabled]="!disabled" placeholder="Contributors" value="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <label>Created</label>
+                                        <input type="text" name="created" class="form-control" disabled="" placeholder="Created" value="{{ actionPoint.created}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 px-1">
+                                    <div class="form-group">
+                                        <label>Updated</label>
+                                        <input type="text" name="updated" class="form-control" disabled="" placeholder="Updated" value="{{ actionPoint.lastModified }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pl-1">
+                                    <div class="form-group">
+                                        <label>Watchers</label>
+                                        <input type="text" name="watchers" [disabled]="!disabled" class="form-control" placeholder="Watchers">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea name="description" style="height: 150px" rows="4" cols="80" class="form-control" [disabled]="!disabled" placeholder="Here can be your description"
+                                            [(ngModel)]="actionPoint.description"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <button [disabled]="!disabled" type="submit" class="btn btn-info btn-fill pull-right">Update Action Point</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
             </div>
-          </div>
+            <div class="col-md-4">
+                <div class="card card-user">
+                    <div class="card-image">
+                        <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <div class="author">
+                            <a href="#">
+                                <img class="avatar border-gray" src="" alt="...">
+                                <h5 class="title">{{actionPoint.title}}</h5>
+                            </a>
+                            <p class="description">
+                                michael24
+                            </p>
+                        </div>
+                        <p class="description text-center">
+                        </p>
+                    </div>
+                    <hr>
+                    <div class="button-container mr-auto ml-auto">
+                        <button href="#" class="btn btn-simple btn-link btn-icon">
+                            <i class="fa fa-facebook-square"></i>
+                        </button>
+                        <button href="#" class="btn btn-simple btn-link btn-icon">
+                            <i class="fa fa-twitter"></i>
+                        </button>
+                        <button href="#" class="btn btn-simple btn-link btn-icon">
+                            <i class="fa fa-google-plus-square"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Delete</button>
-        <a class="btn btn-secondary" [routerLink]="['/action-list']" role="button">Back</a>
-      </form>
     </div>
+</div>
