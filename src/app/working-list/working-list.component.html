@@ -1,0 +1,34 @@
+<div class="content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card strpied-tabled-with-hover">
+                  <div class="card-header inline">
+                      <h4 class="card-title">Working Groups
+                          <a [routerLink]="['/action-create']">
+                              <button type="button" class="btn btn-sm btn-success">Create</button>
+                          </a>
+                      </h4>
+                      <p class="card-category"></p>
+                  </div>
+                  <div class="card-body table-full-width table-responsive">
+                      <table class="table table-hover">
+                          <thead>
+                              <th>ID</th>
+                              <th>Name</th>
+                          </thead>
+                          <tbody>
+                              <tr *ngFor="let workingGroup of workingGroups">
+                                  <td>{{ workingGroup.id }}</td>
+                                  <td>
+                                      <a [routerLink]="['/action-list', workingGroup.id]">{{ workingGroup.name }}</a>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

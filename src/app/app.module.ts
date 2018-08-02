@@ -9,7 +9,9 @@ import { AppComponent } from './app.component';
 import { ActionpointListComponent } from './actionpoint-list/actionpoint-list.component';
 import { ActionpointDetailComponent } from './actionpoint-detail/actionpoint-detail.component';
 import { ActionpointCreateComponent } from './actionpoint-create/actionpoint-create.component';
-import { ActionPointEndpointService } from './service';
+import { ActionPointEndpointService, WorkingGroupEndpointService } from './service';
+import { WorkingListComponent } from './working-list/working-list.component';
+import { EshcHomeComponent } from './eshc-home/eshc-home.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { ActionPointEndpointService } from './service';
     AppComponent,
     ActionpointListComponent,
     ActionpointDetailComponent,
-    ActionpointCreateComponent
+    ActionpointCreateComponent,
+    WorkingListComponent,
+    EshcHomeComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +30,7 @@ import { ActionPointEndpointService } from './service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [ActionPointEndpointService],
+  providers: [ActionPointEndpointService, WorkingGroupEndpointService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

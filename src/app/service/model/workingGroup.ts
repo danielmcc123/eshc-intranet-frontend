@@ -11,7 +11,7 @@
  */
 
 
-export interface WorkingGroup {
+export class WorkingGroup {
     coConvener?: string;
     id?: number;
     name?: string;

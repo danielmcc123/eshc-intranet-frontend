@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ActionPoint, ActionPointEndpointService } from '../service';
+import { Location } from '@angular/common';
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/finally';
@@ -14,7 +15,7 @@ export class ActionpointDetailComponent implements OnInit {
 
   disabled: Boolean = false;
   actionPoint: ActionPoint  = new ActionPoint();
-  constructor(private router: Router, private actionpointService: ActionPointEndpointService, private route: ActivatedRoute) { }
+  constructor(private router: Router, private actionpointService: ActionPointEndpointService, private route: ActivatedRoute, private _location: Location) { }
 
   ngOnInit() {
     this.route.params
@@ -25,13 +26,13 @@ export class ActionpointDetailComponent implements OnInit {
 
   update() {
     this.actionpointService.updateActionPointUsingPUT(this.actionPoint.id, this.actionPoint)
-      .finally(() => this.router.navigate(['/action-detail', this.actionPoint.id]))
-      .subscribe();
+      .finally(() => this.actionpointService.getActionPointUsingGET(this.actionPoint.id))
+      .subscribe(actionPoint => this.actionPoint = actionPoint);
   }
 
   delete() {
     this.actionpointService.deleteActionPointUsingDELETE(this.actionPoint.id)
-      .finally(() => this.actionpointService.getActionPointUsingGET(this.actionPoint.id))
+      .finally(() => this._location.back())
       .subscribe(actionPoint => this.actionPoint = actionPoint);
   }
 

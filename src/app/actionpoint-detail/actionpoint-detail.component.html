@@ -83,7 +83,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <button [disabled]="!disabled" type="submit" class="btn btn-info btn-fill pull-right">Update Action Point</button>
+                            <div class="btn-group btn-group-justified">
+                                <button [disabled]="!disabled" (click)="delete(actionPoint.id)" class="btn btn-danger btn-fill">Delete Action Point</button>
+                                <div> </div>
+                                <button [disabled]="!disabled" type="submit" class="btn btn-info btn-fill">Update Action Point</button>
+                            </div>
+                            
                             <div class="clearfix"></div>
                         </form>
                     </div>
@@ -95,17 +100,30 @@
                         <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="...">
                     </div>
                     <div class="card-body">
-                        <div class="author">
-                            <a href="#">
-                                <img class="avatar border-gray" src="" alt="...">
-                                <h5 class="title">{{actionPoint.title}}</h5>
-                            </a>
-                            <p class="description">
-                                michael24
-                            </p>
-                        </div>
-                        <p class="description text-center">
-                        </p>
+                        <!-- <div class="card-body table-full-width table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <th>{{actionPoint.note}}</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let actionPoint of actionPoints">
+                                        <td>{{ actionPoint.id }}</td>
+                                        <td>
+                                            <a [routerLink]="['/action-detail', actionPoint.id]">{{ actionPoint.title }}</a>
+                                        </td>
+                                        <td>{{ actionPoint.leadContributor }}
+                                            <div ng-if="!actionPoint.leadContributor"></div>
+                                        </td>
+                                        <td>{{ actionPoint.currentStatus }}</td>
+                                        <td>{{ actionPoint.lastModified }}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-xs btn-success">Edit</button>
+                                            <button type="button" class="btn btn-danger btn-xs">Del</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> -->
                     </div>
                     <hr>
                     <div class="button-container mr-auto ml-auto">

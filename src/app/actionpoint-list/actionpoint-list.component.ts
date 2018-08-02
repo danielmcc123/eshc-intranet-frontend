@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActionPoint, ActionPointEndpointService } from '../service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ActionPoint, ActionPointEndpointService, WorkingGroupEndpointService, WorkingGroup } from '../service';
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'app-actionpoint-list',
@@ -10,13 +14,19 @@ export class ActionpointListComponent implements OnInit {
 
   nbActionPoints: number;
   actionPoints: ActionPoint[];
-  
-  constructor(private actionpointService: ActionPointEndpointService) { }
+  workingGroup: WorkingGroup  = new WorkingGroup();
+  constructor(private router: Router, private workingGroupService: WorkingGroupEndpointService, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.actionpointService.countAllActionPointsUsingGET().subscribe(nbActionPoints => this.nbActionPoints = nbActionPoints);
-    this.actionpointService.getActionPointsUsingGET().subscribe(actionPoints => this.actionPoints = actionPoints.content);
-  }
+    this.route.params
+    .map(params => params['workingId'])
+    .switchMap(id => this.workingGroupService.getWorkingGroupUsingGET(id))
+    .subscribe(workingGroup => this.workingGroup = workingGroup)
 
+    this.route.params
+    .map(params => params['workingId'])
+    .switchMap(id => this.workingGroupService.getActionPointsUsingGET1(id))
+    .subscribe(actionPoints => this.actionPoints = actionPoints.content)
+  }
 
 }

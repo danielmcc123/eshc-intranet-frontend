@@ -20,6 +20,7 @@ import { Observable }                                        from 'rxjs/Observab
 
 import { ActionPoint } from '../model/actionPoint';
 import { PageActionPoint } from '../model/pageActionPoint';
+import { PageWorkingGroup } from '../model/pageWorkingGroup';
 import { WorkingGroup } from '../model/workingGroup';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -29,7 +30,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class WorkingGroupEndpointService {
 
-    protected basePath = 'https://localhost:8090';
+    protected basePath = 'http://localhost:8090';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -61,20 +62,20 @@ export class WorkingGroupEndpointService {
     /**
      * Add an Action Point to a Working Group
      * 
-     * @param workingId workingId
      * @param actionId actionId
+     * @param workingId workingId
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public addActionPointUsingPOST(workingId: number, actionId: number, observe?: 'body', reportProgress?: boolean): Observable<ActionPoint>;
-    public addActionPointUsingPOST(workingId: number, actionId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ActionPoint>>;
-    public addActionPointUsingPOST(workingId: number, actionId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ActionPoint>>;
-    public addActionPointUsingPOST(workingId: number, actionId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (workingId === null || workingId === undefined) {
-            throw new Error('Required parameter workingId was null or undefined when calling addActionPointUsingPOST.');
-        }
+    public addActionPointUsingPOST(actionId: number, workingId: number, observe?: 'body', reportProgress?: boolean): Observable<ActionPoint>;
+    public addActionPointUsingPOST(actionId: number, workingId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ActionPoint>>;
+    public addActionPointUsingPOST(actionId: number, workingId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ActionPoint>>;
+    public addActionPointUsingPOST(actionId: number, workingId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (actionId === null || actionId === undefined) {
             throw new Error('Required parameter actionId was null or undefined when calling addActionPointUsingPOST.');
+        }
+        if (workingId === null || workingId === undefined) {
+            throw new Error('Required parameter workingId was null or undefined when calling addActionPointUsingPOST.');
         }
 
         let headers = this.defaultHeaders;
@@ -93,7 +94,7 @@ export class WorkingGroupEndpointService {
             'application/json'
         ];
 
-        return this.httpClient.post<ActionPoint>(`${this.basePath}/api/working/${encodeURIComponent(String(workingId))}/actionId`,
+        return this.httpClient.post<ActionPoint>(this.basePath + '/api/working/' + parseInt(encodeURIComponent(String(workingId))) + '/' + parseInt(encodeURIComponent(String(actionId))),
             null,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -230,7 +231,7 @@ export class WorkingGroupEndpointService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<PageActionPoint>(`${this.basePath}/api/working/${encodeURIComponent(String(id))}/actions`,
+        return this.httpClient.get<PageActionPoint>(this.basePath + '/api/working/' + parseInt(encodeURIComponent(String(id))) + '/actions',
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -240,6 +241,43 @@ export class WorkingGroupEndpointService {
             }
         );
     }
+
+
+    /**
+     * Get all Working Groups in the system
+     * 
+     *
+     */
+    public getAllWorkingGroupsUsingGET(observe?: 'body', reportProgress?: boolean): Observable<PageWorkingGroup>;
+    public getAllWorkingGroupsUsingGET(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PageWorkingGroup>>;
+    public getAllWorkingGroupsUsingGET(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PageWorkingGroup>>;
+    public getAllWorkingGroupsUsingGET(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.get<PageWorkingGroup>(this.basePath + '/api/working',
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
 
     /**
      * Return a Working Group given an Id
@@ -271,7 +309,7 @@ export class WorkingGroupEndpointService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<WorkingGroup>(`${this.basePath}/api/working/${encodeURIComponent(String(id))}`,
+        return this.httpClient.get<WorkingGroup>(this.basePath + '/api/working/' + parseInt(encodeURIComponent(String(id))),
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

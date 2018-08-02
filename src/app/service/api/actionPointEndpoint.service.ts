@@ -311,6 +311,57 @@ export class ActionPointEndpointService {
     }
 
     /**
+     * Get all Action Points for a working group
+     * 
+     * @param id id
+     * @param page Page no
+     * @param size Size of each page
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getActionPointsUsingGET1(id: number, page?: string, size?: string, observe?: 'body', reportProgress?: boolean): Observable<PageActionPoint>;
+    public getActionPointsUsingGET1(id: number, page?: string, size?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PageActionPoint>>;
+    public getActionPointsUsingGET1(id: number, page?: string, size?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PageActionPoint>>;
+    public getActionPointsUsingGET1(id: number, page?: string, size?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getActionPointsUsingGET1.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (page !== undefined) {
+            queryParameters = queryParameters.set('page', <any>page);
+        }
+        if (size !== undefined) {
+            queryParameters = queryParameters.set('size', <any>size);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.get<PageActionPoint>(this.basePath + '/api/working/' + encodeURIComponent(String(id)) + '/actions',
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Fetch all Actionpoints
      * Pagination available at end of url:&#x60; ?page&#x3D;1&amp;size&#x3D;10
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
