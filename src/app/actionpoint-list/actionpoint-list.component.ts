@@ -14,7 +14,7 @@ export class ActionpointListComponent implements OnInit {
 
   nbActionPoints: number;
   actionPoints: ActionPoint[];
-  workingGroup: WorkingGroup  = new WorkingGroup();
+  workingGroup: WorkingGroup;
   constructor(private router: Router, private workingGroupService: WorkingGroupEndpointService, private route: ActivatedRoute) {}
 
   ngOnInit() {

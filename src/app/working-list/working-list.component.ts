@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { WorkingGroupEndpointService, WorkingGroup } from '../service';
 
 @Component({
@@ -10,7 +11,7 @@ export class WorkingListComponent implements OnInit {
 
   workingGroups: WorkingGroup[];
 
-  constructor(private workingGroupService: WorkingGroupEndpointService) { }
+  constructor(private router: Router, private workingGroupService: WorkingGroupEndpointService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.workingGroupService.getAllWorkingGroupsUsingGET().subscribe(workingGroups => this.workingGroups = workingGroups.content);
