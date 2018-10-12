@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionPoint, ActionPointEndpointService, WorkingGroupEndpointService } from '../service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-actionpoint-create',
@@ -11,7 +12,8 @@ export class ActionpointCreateComponent implements OnInit {
 
 actionPoint: ActionPoint = new ActionPoint();
 
-  constructor(private router: Router, private actionPointService: ActionPointEndpointService, private workingGroupService: WorkingGroupEndpointService, private route: ActivatedRoute) { }
+  constructor(private router: Router, private actionPointService: ActionPointEndpointService, 
+    private workingGroupService: WorkingGroupEndpointService, private route: ActivatedRoute, private toastr: ToastrService) { }
 
   ngOnInit() {
   }
@@ -31,6 +33,11 @@ actionPoint: ActionPoint = new ActionPoint();
     this.workingGroupService.addActionPointUsingPOST(actionId, workingId)
     .finally(() => this.router.navigate(['/action-list', workingId]))
     .subscribe()
+    this.showSuccess()
+  }
+
+  showSuccess() {
+    this.toastr.success('Action Point Created!', '', {positionClass: "toast-bottom-left"});
   }
 
 }

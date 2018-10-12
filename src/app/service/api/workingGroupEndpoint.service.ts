@@ -140,7 +140,7 @@ export class WorkingGroupEndpointService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<WorkingGroup>(`${this.basePath}/api/working`,
+        return this.httpClient.post<WorkingGroup>(this.basePath + "/api/working",
             workingGroup,
             {
                 withCredentials: this.configuration.withCredentials,

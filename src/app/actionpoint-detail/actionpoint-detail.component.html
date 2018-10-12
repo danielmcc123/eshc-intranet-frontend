@@ -16,7 +16,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Title</label>
-                                        <input type="text" name="title" class="form-control" [disabled]="!disabled" placeholder="Title" [(ngModel)]="actionPoint.title">
+                                        <input type="text" name="title" class="form-control" [disabled]="!disabled"
+                                            placeholder="Title" [(ngModel)]="actionPoint.title">
                                     </div>
                                 </div>
                             </div>
@@ -24,19 +25,22 @@
                                 <div class="col-md-5 pr-1">
                                     <div class="form-group">
                                         <label>Status</label>
-                                        <input type="text" name="status" class="form-control" [disabled]="!disabled" placeholder="Status" [(ngModel)]="actionPoint.currentStatus">
+                                        <input type="text" name="status" class="form-control" [disabled]="!disabled"
+                                            placeholder="Status" [(ngModel)]="actionPoint.currentStatus">
                                     </div>
                                 </div>
                                 <div class="col-md-2 px-1">
                                     <div class="form-group">
                                         <label>ID</label>
-                                        <input type="text" name="id" class="form-control" disabled="" placeholder="ID" value="{{ actionPoint.id }}">
+                                        <input type="text" name="id" class="form-control" disabled="" placeholder="ID"
+                                            value="{{ actionPoint.id }}">
                                     </div>
                                 </div>
                                 <div class="col-md-5 pl-1">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Category</label>
-                                        <input type="email" name="category" class="form-control" [disabled]="!disabled" placeholder="Category" [(ngModel)]="actionPoint.category">
+                                        <input type="email" name="category" class="form-control" [disabled]="!disabled"
+                                            placeholder="Category" [(ngModel)]="actionPoint.category">
                                     </div>
                                 </div>
                             </div>
@@ -44,13 +48,15 @@
                                 <div class="col-md-6 pr-1">
                                     <div class="form-group">
                                         <label>Lead Contributor</label>
-                                        <input type="text" name="lead" class="form-control" [disabled]="!disabled" placeholder="Lead" [(ngModel)]="actionPoint.leadContributor">
+                                        <input type="text" name="lead" class="form-control" [disabled]="!disabled"
+                                            placeholder="Lead" [(ngModel)]="actionPoint.leadContributor">
                                     </div>
                                 </div>
                                 <div class="col-md-6 pl-1">
                                     <div class="form-group">
                                         <label>Contributors</label>
-                                        <input type="text" name="contributors" class="form-control" [disabled]="!disabled" placeholder="Contributors" value="">
+                                        <input type="text" name="contributors" class="form-control" [disabled]="!disabled"
+                                            placeholder="Contributors" value="">
                                     </div>
                                 </div>
                             </div>
@@ -58,19 +64,22 @@
                                 <div class="col-md-4 pr-1">
                                     <div class="form-group">
                                         <label>Created</label>
-                                        <input type="text" name="created" class="form-control" disabled="" placeholder="Created" value="{{ actionPoint.created}}">
+                                        <input type="text" name="created" class="form-control" disabled="" placeholder="Created"
+                                            value="{{ actionPoint.created}}">
                                     </div>
                                 </div>
                                 <div class="col-md-4 px-1">
                                     <div class="form-group">
                                         <label>Updated</label>
-                                        <input type="text" name="updated" class="form-control" disabled="" placeholder="Updated" value="{{ actionPoint.lastModified }}">
+                                        <input type="text" name="updated" class="form-control" disabled="" placeholder="Updated"
+                                            value="{{ actionPoint.lastModified }}">
                                     </div>
                                 </div>
                                 <div class="col-md-4 pl-1">
                                     <div class="form-group">
                                         <label>Watchers</label>
-                                        <input type="text" name="watchers" [disabled]="!disabled" class="form-control" placeholder="Watchers">
+                                        <input type="text" name="watchers" [disabled]="!disabled" class="form-control"
+                                            placeholder="Watchers">
                                     </div>
                                 </div>
                             </div>
@@ -78,64 +87,144 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Description</label>
-                                        <textarea name="description" style="height: 150px" rows="4" cols="80" class="form-control" [disabled]="!disabled" placeholder="Here can be your description"
+                                        <textarea name="description" style="height: 150px" rows="4" cols="80" class="form-control"
+                                            [disabled]="!disabled" placeholder="Here can be your description"
                                             [(ngModel)]="actionPoint.description"></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="btn-group btn-group-justified">
-                                <button [disabled]="!disabled" (click)="delete(actionPoint.id)" class="btn btn-danger btn-fill">Delete Action Point</button>
+                                <button [disabled]="!disabled" (click)="delete(actionPoint.id)" class="btn btn-danger btn-fill">Delete
+                                    Action Point</button>
                                 <div> </div>
-                                <button [disabled]="!disabled" type="submit" class="btn btn-info btn-fill">Update Action Point</button>
+                                <button [disabled]="!disabled" type="submit" class="btn btn-info btn-fill">Update
+                                    Action Point</button>
                             </div>
-                            
+
                             <div class="clearfix"></div>
                         </form>
                     </div>
                 </div>
             </div>
+
+
             <div class="col-md-4">
                 <div class="card card-user">
                     <div class="card-image">
-                        <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="...">
+                        <img src="https://cmkt-image-prd.global.ssl.fastly.net/0.1.0/ps/260692/2433/2800/m1/fpnw/wm0/blue_hexgrid_pattern-.jpg?1417645204&s=f21b4323df1c8c582d200f0cd42756d2"
+                            alt="...">
+                    </div>
+                    <div class="card-header">
+                        <h4 class="title">Tasks</h4>
+                        <p class="category">Please tick finished tasks</p>
                     </div>
                     <div class="card-body">
-                        <!-- <div class="card-body table-full-width table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                    <th>{{actionPoint.note}}</th>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let actionPoint of actionPoints">
-                                        <td>{{ actionPoint.id }}</td>
-                                        <td>
-                                            <a [routerLink]="['/action-detail', actionPoint.id]">{{ actionPoint.title }}</a>
-                                        </td>
-                                        <td>{{ actionPoint.leadContributor }}
-                                            <div ng-if="!actionPoint.leadContributor"></div>
-                                        </td>
-                                        <td>{{ actionPoint.currentStatus }}</td>
-                                        <td>{{ actionPoint.lastModified }}</td>
-                                        <td>
-                                            <button type="button" class="btn btn-xs btn-success">Edit</button>
-                                            <button type="button" class="btn btn-danger btn-xs">Del</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div> -->
+                        <div class="content">
+                            <div class="table-full-width">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="checkbox">
+                                                    <input id="checkbox1" type="checkbox">
+                                                    <label for="checkbox1"></label>
+                                                </div>
+                                            </td>
+                                            <td>Test Task no 1"</td>
+                                            <td class="td-actions text-right">
+                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                    <i class="fa fa-times"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>
+                                                    <div class="checkbox">
+                                                        <input id="checkbox1" type="checkbox">
+                                                        <label for="checkbox1"></label>
+                                                    </div>
+                                                </td>
+                                                <td>This is brilliant?"</td>
+                                                <td class="td-actions text-right">
+                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>   
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="footer">
+                                    <hr>
+                                    <div class="stats">
+                                        <i class="fa fa-history"></i> Updated 3 minutes ago
+                                    </div>
+                                </div>
+                        </div>
+
+                        
                     </div>
-                    <hr>
-                    <div class="button-container mr-auto ml-auto">
-                        <button href="#" class="btn btn-simple btn-link btn-icon">
-                            <i class="fa fa-facebook-square"></i>
-                        </button>
-                        <button href="#" class="btn btn-simple btn-link btn-icon">
-                            <i class="fa fa-twitter"></i>
-                        </button>
-                        <button href="#" class="btn btn-simple btn-link btn-icon">
-                            <i class="fa fa-google-plus-square"></i>
-                        </button>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card card-user">
+                    <div class="card-image">
+                        <img src="https://cmkt-image-prd.global.ssl.fastly.net/0.1.0/ps/260692/2433/2800/m1/fpnw/wm0/blue_hexgrid_pattern-.jpg?1417645204&s=f21b4323df1c8c582d200f0cd42756d2"
+                            alt="nice blue background">
+                    </div>
+                    <div class="card-body">
+                        <div class="header">
+                            <h4 class="title">Comments</h4>
+                            <p class="category">Not ordered yet</p>
+                        </div>
+                        <div class="content">
+                            <div class="table-full-width">
+                                <table class="table">
+                                    <tbody>
+                                        <tr *ngFor="let note of listOfNotes">
+                                            <td>{{note.noteBody}}
+                                                <p><small>{{note.author}} <i>{{note.dateTimeCreated}}</i></small></p>
+                                            </td>
+                                            <td class="td-actions text-right">
+                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                    <i class="fa fa-times"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <form (ngSubmit)="addComment()">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Write you're own</label>
+                                                <textarea name="description" style="height: 150px" rows="4" cols="80" class="form-control"
+                                                    [(ngModel)]="note.noteBody"></textarea>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-info btn-fill pull-right">Add Comment</button>
+                                    </form>
+                            </div>
+
+                            <div class="footer">
+                                <hr>
+                                <div class="stats">
+                                    <i class="fa fa-history"></i> Updated 3 minutes ago
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

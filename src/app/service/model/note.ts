@@ -11,7 +11,7 @@
  */
 
 
-export interface Note {
+export class Note {
     author?: number;
     dateTimeCreated?: Date;
     id?: number;

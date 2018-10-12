@@ -1,34 +1,29 @@
 <div class="content">
   <div class="container-fluid">
-      <div class="row">
-          <div class="col-md-12">
-              <div class="card strpied-tabled-with-hover">
-                  <div class="card-header inline">
-                      <h4 class="card-title">Working Groups
-                          <a [routerLink]="['/action-create']">
-                              <button type="button" class="btn btn-sm btn-success">Create</button>
-                          </a>
-                      </h4>
-                      <p class="card-category"></p>
-                  </div>
-                  <div class="card-body table-full-width table-responsive">
-                      <table class="table table-hover">
-                          <thead>
-                              <th>ID</th>
-                              <th>Name</th>
-                          </thead>
-                          <tbody>
-                              <tr *ngFor="let workingGroup of workingGroups">
-                                  <td>{{ workingGroup.id }}</td>
-                                  <td>
-                                      <a [routerLink]="['/action-list', workingGroup.id]">{{ workingGroup.name }}</a>
-                                  </td>
-                              </tr>
-                          </tbody>
-                      </table>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+        <div class="row">
+  <div class="col-md-3" *ngFor="let workingGroup of workingGroups">
+        <div class="card card-user ml-auto">
+            <div class="card-image">
+                <img src="https://cmkt-image-prd.global.ssl.fastly.net/0.1.0/ps/260692/2433/2800/m1/fpnw/wm0/blue_hexgrid_pattern-.jpg?1417645204&s=f21b4323df1c8c582d200f0cd42756d2" alt="...">
+            </div>
+            <div class="card-body">
+                <h1>{{ workingGroup.id }}</h1>
+                <h3><a [routerLink]="['/action-list', workingGroup.id]">{{ workingGroup.name }}</a></h3>
+            </div>
+            <hr>
+            <div class="button-container mr-auto ml-auto">
+                <button href="#" class="btn btn-simple btn-link btn-icon">
+                    <i class="fa fa-facebook-square"></i>
+                </button>
+                <button href="#" class="btn btn-simple btn-link btn-icon">
+                    <i class="fa fa-twitter"></i>
+                </button>
+                <button href="#" class="btn btn-simple btn-link btn-icon">
+                    <i class="fa fa-google-plus-square"></i>
+                </button>
+            </div>
+            </div>
+        </div>
+    </div>
 </div>
+

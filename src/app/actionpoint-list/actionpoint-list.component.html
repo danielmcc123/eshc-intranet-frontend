@@ -1,7 +1,7 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-5">
                 <div class="card strpied-tabled-with-hover">
                     <div class="card-header inline">
                         <h4 class="card-title">{{ workingGroup.name }}' Action Points
@@ -11,7 +11,8 @@
                         </h4>
                         <p class="card-category"></p>
                     </div>
-                    <div class="card-body table-full-width table-striped">
+                    <div class="content">
+                    <div class="card-body table-full-width">
                         <table class="table table-hover">
                             <thead>
                                 <th>ID</th>
@@ -19,7 +20,6 @@
                                 <th>Lead</th>
                                 <th>Status</th>
                                 <th>Updated</th>
-                                <th>Actions</th>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let actionPoint of actionPoints">
@@ -32,13 +32,10 @@
                                     </td>
                                     <td>{{ actionPoint.currentStatus }}</td>
                                     <td>{{ actionPoint.lastModified }}</td>
-                                    <td>
-                                        <button type="button" class="btn btn-xs btn-success">Edit</button>
-                                        <button type="button" class="btn btn-danger btn-xs">Del</button>
-                                    </td>
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
                     </div>
                 </div>
             </div>

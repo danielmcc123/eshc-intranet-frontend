@@ -27,7 +27,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class NoteEndpointService {
 
-    protected basePath = 'https://localhost:8090';
+    protected basePath = 'http://localhost:8090';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -127,7 +127,7 @@ export class NoteEndpointService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<Note>(`${this.basePath}/api/notes`,
+        return this.httpClient.post<Note>(this.basePath + '/api/notes',
             note,
             {
                 withCredentials: this.configuration.withCredentials,

@@ -9,12 +9,17 @@ import { AppComponent } from './app.component';
 import { ActionpointListComponent } from './actionpoint-list/actionpoint-list.component';
 import { ActionpointDetailComponent } from './actionpoint-detail/actionpoint-detail.component';
 import { ActionpointCreateComponent } from './actionpoint-create/actionpoint-create.component';
-import { ActionPointEndpointService, WorkingGroupEndpointService } from './service';
+import { ActionPointEndpointService, WorkingGroupEndpointService, NoteEndpointService } from './service';
 import { WorkingListComponent } from './working-list/working-list.component';
 import { EshcHomeComponent } from './eshc-home/eshc-home.component';
 
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { initializer } from './utils/app-init';
+import { WorkingCreateComponent } from './working-create/working-create.component';
+
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -24,7 +29,8 @@ import { initializer } from './utils/app-init';
     ActionpointDetailComponent,
     ActionpointCreateComponent,
     WorkingListComponent,
-    EshcHomeComponent
+    EshcHomeComponent,
+    WorkingCreateComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,9 +38,12 @@ import { initializer } from './utils/app-init';
     RouterModule,
     FormsModule,
     HttpClientModule,
-    KeycloakAngularModule
+    KeycloakAngularModule,
+    CommonModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
-  providers: [ActionPointEndpointService, WorkingGroupEndpointService,
+  providers: [ActionPointEndpointService, WorkingGroupEndpointService, NoteEndpointService,
     {
     provide: APP_INITIALIZER,
     useFactory: initializer,
